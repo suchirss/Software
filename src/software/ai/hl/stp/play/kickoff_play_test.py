@@ -1,5 +1,3 @@
-import sys
-
 import pytest
 
 import software.python_bindings as tbots_cpp
@@ -10,8 +8,10 @@ from software.simulated_tests.ball_moves_from_rest import *
 from proto.import_all_protos import *
 from proto.message_translation.tbots_protobuf import create_world_state
 from proto.ssl_gc_common_pb2 import Team
+from software.simulated_tests.simulated_test_fixture import (
+    pytest_main,
+)
 from software.simulated_tests.or_validation import OrValidation
-
 
 @pytest.mark.parametrize("is_friendly_test", [True, False])
 def test_kickoff_play(simulated_test_runner, is_friendly_test):
@@ -144,5 +144,4 @@ def test_kickoff_play(simulated_test_runner, is_friendly_test):
 
 
 if __name__ == "__main__":
-    # Run the test, -s disables all capturing at -vv increases verbosity
-    sys.exit(pytest.main([__file__, "-svv"]))
+    pytest_main(__file__)
